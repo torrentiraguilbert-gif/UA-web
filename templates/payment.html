@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GCash Payment</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="gcash-page">
+
+    <div class="gcash-box">
+
+        <h2>GCash Payment</h2>
+
+        <div class="gcash-summary">
+            <p>{{ name }} ({{ size }})</p>
+            <p>Qty: {{ quantity }}</p>
+            <h3>Total: ₱{{ total }}</h3>
+        </div>
+
+        <form action="/process_payment" method="POST">
+
+            <label>GCash Number</label>
+            <input type="text" name="number" placeholder="09123456789" required>
+
+            <label>PIN</label>
+            <input type="password" name="pin" placeholder="1234" required>
+
+            <button type="submit" class="pay-btn">Pay Now</button>
+
+        </form>
+
+        <p class="test-note">
+            TEST: 09123456789 / 1234
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+</html>

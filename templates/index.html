@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UA Shop</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="header">
+    <div class="logo">DCST APPAREL</div>
+
+    <div class="cart">
+        <a href="/cart">🛒 Cart ({{ cart_count }})</a>
+    </div>
+</div>
+
+<div class="products">
+
+{% for product in products %}
+<div class="product">
+
+    <img src="{{ url_for('static', filename='uploads/' ~ product['image']) }}">
+    <h3>{{ product['name'] }}</h3>
+    <p>₱{{ product['price'] }}</p>
+
+    <div class="btn-group">
+
+        <!-- ✅ SAFE JSON -->
+        <button type="button"
+            onclick='openModal({{ product["id"]|tojson }}, {{ product["name"]|tojson }}, {{ product["price"]|tojson }}, "cart")'>
+            Add to Cart
+        </button>
+
+        <button type="button" class="buy-now"
+            onclick='openModal({{ product["id"]|tojson }}, {{ product["name"]|tojson }}, {{ product["price"]|tojson }}, "buy")'>
+            Buy Now
+        </button>
+
+    </div>
+
+</div>
+{% endfor %}
+
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+
+    <div class="modal-content">
+
+        <span onclick="closeModal()" class="close">✖</span>
+
+        <h3 id="pname"></h3>
+        <p id="pprice"></p>
+
+        <form id="modalForm" method="POST">
+
+            <input type="hidden" name="product_id" id="pid">
+            <input type="hidden" name="name" id="pname_input">
+            <input type="hidden" name="price" id="pprice_input">
+
+            <label>Size</label>
+            <select name="size" required>
+                <option>US10</option>
+                <option>US11</option>
+                <option>US12</option>
+                <option>US13</option>
+                <option>US14</option>
+            </select>
+
+            <label>Quantity</label>
+            <input type="number" name="quantity" value="1" min="1" required>
+
+            <button type="submit" id="submitBtn">Confirm</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+function openModal(id, name, price, type){
+    const modal = document.getElementById("modal");
+    modal.style.display = "block";
+
+    document.getElementById("pid").value = id;
+    document.getElementById("pname").innerText = name;
+    document.getElementById("pprice").innerText = "₱" + price;
+
+    document.getElementById("pname_input").value = name;
+    document.getElementById("pprice_input").value = price;
+
+    const form = document.getElementById("modalForm");
+    const btn = document.getElementById("submitBtn");
+
+    if(type === "cart"){
+        form.action = "/add_to_cart";
+        btn.innerText = "Add to Cart";
+    } else {
+        form.action = "/buy_now";
+        btn.innerText = "Buy Now";
+    }
+}
+
+function closeModal(){
+    document.getElementById("modal").style.display = "none";
+}
+
+window.onclick = function(event){
+    const modal = document.getElementById("modal");
+    if(event.target === modal){
+        modal.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,328 @@
+/* =========================
+   UA SHOP MODERN ECOMMERCE UI
+========================= */
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #f6f7fb;
+    color: #111;
+}
+
+/* =========================
+   HEADER
+========================= */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+    background: white;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.cart a {
+    text-decoration: none;
+    color: #111;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* =========================
+   PRODUCT GRID
+========================= */
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    padding: 30px;
+}
+
+/* PRODUCT CARD */
+.product {
+    background: white;
+    padding: 14px;
+    border-radius: 14px;
+    transition: 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.product img {
+    width: 100%;
+    height: 190px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.product h3 {
+    font-size: 14px;
+    margin: 8px 0;
+    font-weight: 600;
+}
+
+.product p {
+    font-weight: bold;
+    color: #111;
+}
+
+/* =========================
+   BUTTON GROUP (CLEAN SPLIT)
+========================= */
+.btn-group {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.btn-group button {
+    flex: 1;
+    padding: 8px;
+    font-size: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* ADD TO CART */
+.btn-group button:first-child {
+    background: #111;
+    color: white;
+}
+
+.btn-group button:first-child:hover {
+    background: #333;
+}
+
+/* BUY NOW */
+.buy-now {
+    background: #00c853;
+    color: white;
+}
+
+.buy-now:hover {
+    background: #00a844;
+}
+
+/* =========================
+   MODAL
+========================= */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+    background: white;
+    width: 340px;
+    margin: 8% auto;
+    padding: 22px;
+    border-radius: 14px;
+    text-align: center;
+    animation: pop 0.2s ease;
+}
+
+@keyframes pop {
+    from {transform: scale(0.9); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* INPUTS */
+select, input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 6px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+/* MODAL BUTTON */
+#submitBtn {
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px;
+    border: none;
+    background: #111;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+#submitBtn:hover {
+    background: #333;
+}
+
+/* =========================
+   CART PAGE
+========================= */
+.cart-page {
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back-btn {
+    text-decoration: none;
+    color: #111;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 40px;
+    color: gray;
+}
+
+/* CART ITEM */
+.cart-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 40px;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.product-info {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.product-info img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
+
+.qty {
+    text-align: center;
+}
+
+.item-total {
+    text-align: right;
+    font-weight: bold;
+}
+
+.remove a {
+    color: red;
+    text-decoration: none;
+}
+
+/* CART FOOTER */
+.cart-footer {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.checkout-btn {
+    background: #111;
+    color: white;
+    padding: 10px 18px;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+/* =========================
+   BUY PAGE
+========================= */
+.buy-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.buy-container {
+    background: white;
+    padding: 30px;
+    width: 360px;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.place-order-btn {
+    width: 100%;
+    padding: 12px;
+    background: #111;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* =========================
+   GCASH STYLE PAYMENT
+========================= */
+.gcash-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #00a3ff;
+}
+
+.gcash-box {
+    background: white;
+    padding: 25px;
+    width: 340px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.pay-btn {
+    width: 100%;
+    padding: 12px;
+    background: #00a3ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+    .products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .products {
+        grid-template-columns: 1fr;
+    }
+}

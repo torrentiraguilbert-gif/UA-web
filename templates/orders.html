@@ -1,0 +1,79 @@
+<!-- templates/orders.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Your Cart</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="cart-page">
+
+    <div class="cart-header">
+        <h1>Your Cart</h1>
+        <a href="/" class="back-btn">← Continue Shopping</a>
+    </div>
+
+    {% if cart|length == 0 %}
+        <div class="empty-cart">
+            <h2>Your cart is empty 🛒</h2>
+        </div>
+    {% else %}
+
+    <!-- HEADER LABELS -->
+    <div class="cart-labels">
+        <span>Product</span>
+        <span>Quantity</span>
+        <span>Total</span>
+        <span></span>
+    </div>
+
+    {% for key, item in cart.items() %}
+    <div class="cart-item">
+
+        <!-- PRODUCT -->
+        <div class="product-info">
+            <img src="{{ url_for('static', filename='uploads/' ~ item['image']) }}">
+            <div>
+                <h3>{{ item['name'] }}</h3>
+                <p>Size: {{ item['size'] }}</p>
+                <p>₱{{ item['price'] }}</p>
+            </div>
+        </div>
+
+        <!-- QTY -->
+        <div class="qty">
+            {{ item['quantity'] }}
+        </div>
+
+        <!-- TOTAL -->
+        <div class="item-total">
+            ₱{{ item['price'] * item['quantity'] }}
+        </div>
+
+        <!-- REMOVE -->
+        <div class="remove">
+            <a href="/remove/{{ key }}">🗑</a>
+        </div>
+
+    </div>
+    {% endfor %}
+
+    <!-- TOTAL BOX -->
+    <div class="cart-footer">
+        <h2>Total: ₱{{ total }}</h2>
+
+        <div class="cart-actions">
+            <a href="/clear" class="clear-btn">Clear Cart</a>
+            <a href="#" class="checkout-btn">Checkout</a>
+        </div>
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
